@@ -1,9 +1,7 @@
--- Xóa CSDL cũ nếu có
 DROP DATABASE IF EXISTS FuramaResort;
 CREATE DATABASE IF NOT EXISTS FuramaResort;
 USE FuramaResort;
 
--- Xóa bảng cũ theo thứ tự khóa ngoại
 DROP TABLE IF EXISTS hop_dong_chi_tiet;
 DROP TABLE IF EXISTS hop_dong;
 DROP TABLE IF EXISTS dich_vu_di_kem;
@@ -137,7 +135,7 @@ CREATE TABLE hop_dong_chi_tiet (
     FOREIGN KEY (ma_dich_vu_di_kem) REFERENCES dich_vu_di_kem(ma_dich_vu_di_kem)
 );
 
--- ========== DỮ LIỆU MẪU ==========
+--  DỮ LIỆU MẪU
 
 INSERT INTO vi_tri (ten_vi_tri) VALUES ('Lễ tân'), ('Phục vụ'), ('Quản lý');
 INSERT INTO trinh_do (ten_trinh_do) VALUES ('Trung cấp'), ('Cao đẳng'), ('Đại học'), ('Sau đại học');
@@ -187,7 +185,7 @@ VALUES
 (2, 2, 1, 150000),
 (3, 4, 1, 300000);
 
--- ========== TRUY VẤN ==========
+-- TRUY VẤN
 
 -- 2. Nhân viên tên bắt đầu H, T, K và tối đa 15 ký tự
 SELECT *
