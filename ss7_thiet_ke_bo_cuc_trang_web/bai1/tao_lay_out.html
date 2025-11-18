@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Layout DIV + CSS</title>
+    <title>Layout DIV + CSS – Grid</title>
     <style>
         * {
             margin: 0;
@@ -19,22 +19,81 @@
             text-decoration: none;
         }
 
-        /* HEADER FULL WIDTH */
+        /* ====== GRID SYSTEM ====== */
+
+        .row::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        [class*="col-"] {
+            float: left;
+            padding: 10px;
+        }
+
+        /* MOBILE: s (default) */
+        .col-s-1  {width: 8.33%;}
+        .col-s-2  {width: 16.66%;}
+        .col-s-3  {width: 25%;}
+        .col-s-4  {width: 33.33%;}
+        .col-s-5  {width: 41.66%;}
+        .col-s-6  {width: 50%;}
+        .col-s-7  {width: 58.33%;}
+        .col-s-8  {width: 66.66%;}
+        .col-s-9  {width: 75%;}
+        .col-s-10 {width: 83.33%;}
+        .col-s-11 {width: 91.66%;}
+        .col-s-12 {width: 100%;}
+
+        /* TABLET: m */
+        @media (min-width: 600px) {
+            .col-m-1  {width: 8.33%;}
+            .col-m-2  {width: 16.66%;}
+            .col-m-3  {width: 25%;}
+            .col-m-4  {width: 33.33%;}
+            .col-m-5  {width: 41.66%;}
+            .col-m-6  {width: 50%;}
+            .col-m-7  {width: 58.33%;}
+            .col-m-8  {width: 66.66%;}
+            .col-m-9  {width: 75%;}
+            .col-m-10 {width: 83.33%;}
+            .col-m-11 {width: 91.66%;}
+            .col-m-12 {width: 100%;}
+        }
+
+        /* DESKTOP: l */
+        @media (min-width: 992px) {
+            .col-l-1  {width: 8.33%;}
+            .col-l-2  {width: 16.66%;}
+            .col-l-3  {width: 25%;}
+            .col-l-4  {width: 33.33%;}
+            .col-l-5  {width: 41.66%;}
+            .col-l-6  {width: 50%;}
+            .col-l-7  {width: 58.33%;}
+            .col-l-8  {width: 66.66%;}
+            .col-l-9  {width: 75%;}
+            .col-l-10 {width: 83.33%;}
+            .col-l-11 {width: 91.66%;}
+            .col-l-12 {width: 100%;}
+        }
+
+        /* Center khối theo chiều ngang (dùng với col-s/m/l-*) */
+        .center {
+            float: none;
+            margin: 0 auto;
+        }
+
+        /* ====== HEADER ====== */
+
         .header {
             width: 100%;
             background: #333333;
             color: #ffffff;
         }
 
-        .header-inner,
-        .footer-inner {
-            width: 90%;
-            max-width: 1100px;
-            margin: 0 auto;
+        .header-content {
             padding: 12px 0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
         }
 
         .logo {
@@ -43,16 +102,15 @@
         }
 
         .nav {
-            display: flex;
-            gap: 25px;
+            text-align: center;
         }
 
         .nav a {
             color: #cccccc;
             font-size: 14px;
-            padding: 6px 10px;
+            padding: 6px 12px;
             border-radius: 3px;
-            transition: 0.2s;
+            margin: 0 5px;
         }
 
         .nav a.active {
@@ -67,36 +125,32 @@
         }
 
         .login {
+            text-align: right;
             font-size: 14px;
+            opacity: 0.9;
             cursor: pointer;
-            opacity: 0.8;
-            transition: 0.2s;
         }
 
         .login::before {
             content: "⎆ ";
         }
 
-        .login:hover {
-            opacity: 1;
+        /* ====== MAIN ====== */
+
+        .main-area {
+            margin: 20px 0 30px;
         }
 
-        /* MAIN AREA */
-        .main-wrapper {
-            width: 90%;
-            max-width: 1100px;
-            margin: 20px auto 30px;
+        .main-box {
             background: #ffffff;
-            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-            display: flex;
-            min-height: 380px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+            min-height: 350px;
         }
 
         .sidebar-left {
-            width: 15%;
             background: #f7f7f7;
-            padding: 25px 15px;
             border-right: 1px solid #dddddd;
+            padding-top: 25px;
         }
 
         .sidebar-left a {
@@ -111,8 +165,7 @@
         }
 
         .content {
-            width: 55%;
-            padding: 30px 30px 40px;
+            padding: 30px 25px 40px;
         }
 
         .content h1 {
@@ -128,20 +181,14 @@
         .content p {
             font-size: 14px;
             line-height: 1.5;
-            margin-bottom: 10px;
             color: #555555;
+            margin-bottom: 10px;
         }
 
         .sidebar-right {
-            width: 30%;
             background: #f7f7f7;
-            padding: 25px 20px;
             border-left: 1px solid #dddddd;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            align-items: stretch;
-            justify-content: flex-start;
+            padding-top: 25px;
         }
 
         .ads {
@@ -152,119 +199,94 @@
             align-items: center;
             justify-content: center;
             font-size: 14px;
-            cursor: pointer;
-            transition: 0.2s;
+            margin: 0 10px 20px;
         }
 
-        .ads:hover {
-            background: #e1e1e1;
-        }
+        /* ====== FOOTER ====== */
 
-        /* FOOTER FULL WIDTH */
         .footer {
             width: 100%;
             background: #555555;
             color: #ffffff;
-        }
-
-        .footer-inner {
+            padding: 10px 0;
             text-align: center;
             font-size: 14px;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .main-wrapper {
-                flex-direction: column;
-            }
-
-            .sidebar-left,
-            .content,
-            .sidebar-right {
-                width: 100%;
-                border: none;
-            }
-
-            .sidebar-right {
-                flex-direction: row;
-            }
-
-            .ads {
-                flex: 1;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .header-inner,
-            .footer-inner {
-                width: 94%;
-            }
-
-            .main-wrapper {
-                width: 94%;
-                margin: 10px auto 20px;
-            }
-
-            .header-inner {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 8px;
-            }
-
-            .nav {
-                flex-wrap: wrap;
-                gap: 12px;
-            }
         }
     </style>
 </head>
 <body>
+
+<!-- HEADER -->
 <div class="header">
-    <div class="header-inner">
-        <div class="logo">Logo</div>
+    <div class="row">
+        <!-- Khối header nằm giữa: col-s-12 col-m-10 col-l-8 center -->
+        <div class="col-s-12 col-m-10 col-l-8 center header-content">
+            <div class="row">
+                <div class="col-s-12 col-m-2 col-l-2 logo">
+                    Logo
+                </div>
 
-        <div class="nav">
-            <a href="#" class="active">Home</a>
-            <a href="#">About</a>
-            <a href="#">Projects</a>
-            <a href="#">Contact</a>
+                <div class="col-s-12 col-m-8 col-l-8 nav">
+                    <a href="#" class="active">Home</a>
+                    <a href="#">About</a>
+                    <a href="#">Projects</a>
+                    <a href="#">Contact</a>
+                </div>
+
+                <div class="col-s-12 col-m-2 col-l-2 login">
+                    Login
+                </div>
+            </div>
         </div>
-
-        <div class="login">Login</div>
     </div>
 </div>
 
-<div class="main-wrapper">
-    <div class="sidebar-left">
-        <a href="#">Link</a>
-        <a href="#">Link</a>
-        <a href="#">Link</a>
-    </div>
+<!-- MAIN -->
+<div class="main-area">
+    <div class="row">
+        <!-- Hộp nội dung chính cũng ở giữa -->
+        <div class="col-s-12 col-m-10 col-l-8 center main-box">
+            <div class="row">
+                <!-- Sidebar trái -->
+                <div class="col-s-12 col-m-2 col-l-2 sidebar-left">
+                    <a href="#">Link</a>
+                    <a href="#">Link</a>
+                    <a href="#">Link</a>
+                </div>
 
-    <div class="content">
-        <h1>Welcome</h1>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-            commodo consequat.
-        </p>
+                <!-- Nội dung chính -->
+                <div class="col-s-12 col-m-6 col-l-6 content">
+                    <h1>Welcome</h1>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint
+                        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+                        laborum.
+                    </p>
 
-        <h2>Test</h2>
-        <p>Lorem ipsum…</p>
-    </div>
+                    <h2>Test</h2>
+                    <p>Lorem ipsum…</p>
+                </div>
 
-
-    <div class="sidebar-right">
-        <div class="ads">ADS</div>
-        <div class="ads">ADS</div>
+                <!-- Sidebar phải -->
+                <div class="col-s-12 col-m-4 col-l-4 sidebar-right">
+                    <div class="ads">ADS</div>
+                    <div class="ads">ADS</div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
+<!-- FOOTER -->
 <div class="footer">
-    <div class="footer-inner">
-        Footer Text
+    <div class="row">
+        <div class="col-s-12 col-m-10 col-l-8 center">
+            Footer Text
+        </div>
     </div>
 </div>
+
 </body>
 </html>
