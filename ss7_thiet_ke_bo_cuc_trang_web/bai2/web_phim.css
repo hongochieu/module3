@@ -1,0 +1,90 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Header */
+header {
+    background: #ff5050;
+    padding: 15px;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+.top-menu {
+    margin-top: 60px;
+    background: #eee;
+    padding: 10px;
+    text-align: center;
+    position: sticky;
+    top: 60px;
+}
+
+.top-menu a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #444;
+    font-weight: 500;
+}
+
+.top-menu a:hover {
+    color: red;
+    font-weight: bold;
+}
+
+/* Layout */
+.container {
+    display: flex;
+    margin-top: 10px;
+    padding: 20px;
+}
+
+.left {
+    width: 30%;
+    padding-right: 20px;
+}
+
+.left ul li {
+    list-style: none;
+    margin: 10px 0;
+}
+
+.left a {
+    text-decoration: none;
+    color: #000;
+}
+
+.left a:hover {
+    font-weight: bold;
+    color: blue;
+}
+
+.right {
+    width: 70%;
+}
+
+/* Footer */
+footer {
+    margin-top: 30px;
+    padding: 20px;
+    background: #f2f2f2;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    .left, .right {
+        width: 100%;
+    }
+}
